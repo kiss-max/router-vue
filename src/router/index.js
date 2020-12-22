@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+// import Home from '../views/Home.vue'
 import first from '../views/first.vue'
 
 Vue.use(VueRouter)
@@ -8,8 +8,22 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect:'/compute' //重定向
+  },
+  {
+    path: '/compute',
+    name: 'compute',
+    component: () => import(/* webpackChunkName: "child1" */ '../views/compute.vue')
+  },
+  {
+    path: '/friend',
+    name: 'friend',
+    component: () => import(/* webpackChunkName: "child1" */ '../views/friend.vue')
+  },
+  {
+    path: '/radom',
+    name: 'radom',
+    component: () => import(/* webpackChunkName: "child1" */ '../views/radom.vue')
   },
   {
     path: '/first',
@@ -39,6 +53,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  linkActiveClass:'active',
   routes
 })
 
